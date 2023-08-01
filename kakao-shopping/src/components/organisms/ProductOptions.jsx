@@ -19,11 +19,17 @@ const ProductOptions = ({ product }) => {
   const cartItems = useSelector((state) => state.cart.cartItems);
 
   const handleAddCartClick = () => {
+    const expirationTime = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')).expirationTime : null;
+    if(!expirationTime || expirationTime < Date.now()) {
+      alert('로그인 후 이용해주세요.');
+      return;
+    }
 
     addCart(cartItems)
     .then((res) => {
       dispatch(clearItem());
       setSelectedOptions([]);
+      alert('장바구니에 담겼습니다.');
     })
     .catch((err) => {
       console.log(err);
