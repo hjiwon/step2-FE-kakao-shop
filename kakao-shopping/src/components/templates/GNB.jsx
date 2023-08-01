@@ -12,7 +12,8 @@ const GNB = () => {
   useEffect(() => {
     try {
       const storedUser = JSON.parse(localStorage.getItem('userInfo'));
-      if(storedUser.expirationTime > Date.now()) {
+      if(!storedUser) return;
+      else if(storedUser.expirationTime > Date.now()) {
         dispatch(loginSuccess(storedUser));
       } else {
         dispatch(logout());

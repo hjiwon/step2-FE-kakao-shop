@@ -29,7 +29,9 @@ const CartTemplate = () => {
           <span>주문 예상 금액</span> 
           <span className="text-blue-700">{totalPrice} 원</span>
         </div>
-        <button onClick={handleBuyClick} className="w-full text-center bg-yellow-300 py-3 font-bold"> 주문하기 </button>
+        {totalPrice === 0 ?
+        <button className='w-full text-center bg-yellow-300 py-3 font-bold text-gray-400 cursor-not-allowed'> 주문하기 </button> :
+        <button onClick={handleBuyClick} className='w-full text-center bg-yellow-300 py-3 font-bold'> 주문하기 </button>}
       </div>
     </>
   )
