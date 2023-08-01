@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { addItem } from "../../redux/cartRedux";
+import { addItem, updateSumPrice } from "../../redux/cartRedux";
 
 const OptionsList = ({options, selectedOptions, setSelectedOptions}) => {
   const dispatch = useDispatch();
@@ -8,6 +8,8 @@ const OptionsList = ({options, selectedOptions, setSelectedOptions}) => {
     const existing = selectedOptions.filter((selectedOption) => selectedOption.optionName === optionName);
     if(existing.length > 0) return;
     dispatch(addItem({optionId, quantity: 1}));
+    dispatch(updateSumPrice(price));
+    
     const newItem = {
       optionName,
       optionId,

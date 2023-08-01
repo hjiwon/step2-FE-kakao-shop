@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addItem, subtractItem } from "../../redux/cartRedux";
+import { addItem, subtractItem, updateSumPrice } from "../../redux/cartRedux";
 
 const SelectedOption = ({ selectedOption, className }) => {
   const dispatch = useDispatch();
@@ -13,23 +13,15 @@ const SelectedOption = ({ selectedOption, className }) => {
       return;
     } else if(count === -1 && optionCount === 1) {
       dispatch(subtractItem({optionId: selectedOption.optionId}));
+      dispatch(updateSumPrice(selectedOption.price));
       setOptionCount(prev => prev + count);
       setButtonValid(false);
-      selectedOption.sumCount -= 1;
-      selectedOption.sumPrice -= selectedOption.price;
       return;
-    } else if(count === -1 && optionCount === 2) {
-      dispatch(subtractItem({optionId: selectedOption.optionId}));
-      setButtonValid(false);
-      setOptionCount(prev => prev + count);
-      selectedOption.sumCount -= 1;
-      selectedOption.sumPrice -= selectedOption.price;
     } else {
       dispatch(addItem({optionId: selectedOption.optionId}));
+      dispatch(updateSumPrice(selectedOption.price));
       setButtonValid(true);
       setOptionCount(prev => prev + count);
-      selectedOption.sumCount += count;
-      selectedOption.sumPrice += selectedOption.price * count;
     }
   }
 

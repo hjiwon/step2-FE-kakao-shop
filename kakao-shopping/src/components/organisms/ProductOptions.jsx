@@ -10,13 +10,12 @@ import { useDispatch } from "react-redux";
 
 const ProductOptions = ({ product }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const sumOptionPrice = selectedOptions.reduce((acc, cur) => acc + cur.sumPrice, 0);
-  const sumOptionCount = selectedOptions.reduce((acc, cur) => acc + cur.sumCount, 0);
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const sumOptionCount = cartItems.reduce((acc, cur) => acc + cur.quantity, 0);
+  const sumOptionPrice = useSelector((state) => state.cart.cartSumPrice);
 
   const dispatch = useDispatch();
   const options = product.options;
-
-  const cartItems = useSelector((state) => state.cart.cartItems);
 
   const handleAddCartClick = () => {
     const expirationTime = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')).expirationTime : null;
