@@ -51,7 +51,7 @@ const CartItemNumForm = ({ cartId, itemQuantity, itemPrice, setTotalPrice }) => 
     <div className="flex items-center justify-between my-1">
       {
       isModalOpen && 
-      <Modal handleCancelDelete={handleCancelDelete} handleConfirmDelete={handleConfirmDelete} />
+      <Modal handleCancelDelete={handleCancelDelete} handleConfirmDelete={handleConfirmDelete} modalText="해당 상품 장바구니에서 삭제하시겠습니까?" />
       }
       <div className="flex">
         <button onClick={handleDeleteClick} className="border border-black font-bold rounded-lg px-1 w-12 h-8 mr-4">
