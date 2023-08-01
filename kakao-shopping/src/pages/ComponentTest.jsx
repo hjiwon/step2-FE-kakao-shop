@@ -1,9 +1,9 @@
-import Toaster from '../components/molecules/componentTest/Toaster'
-import RadioButton from '../components/molecules/componentTest/RadioButton'
-import CheckBox from '../components/molecules/componentTest/CheckBox'
+import Toaster from '../components/molecules/Toaster'
+import RadioButton from '../components/molecules/RadioButton'
+import CheckBox from '../components/molecules/CheckBox'
 import Carousel from '../components/molecules/Carousel';
-import Toggle from '../components/molecules/componentTest/Toggle';
-import BreadCrumb from '../components/molecules/componentTest/BreadCrumb';
+import Toggle from '../components/molecules/Toggle';
+import BreadCrumb from '../components/molecules/BreadCrumb';
 
 const ComponentTest = () => {
   return (

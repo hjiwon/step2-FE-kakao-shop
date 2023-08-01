@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { modifyCart } from "../../apis/api";
-import Modal from "../molecules/Modal";
 
 const CartItemNumForm = ({ cartId, itemQuantity, itemPrice, setTotalPrice }) => {
   const [quantity, setQuantity] = useState(itemQuantity);
@@ -14,14 +13,11 @@ const CartItemNumForm = ({ cartId, itemQuantity, itemPrice, setTotalPrice }) => 
 
   const handleClick = (num) => {
     if(quantity + num < 0) return;
-
-    modifyCart([{
+    const a = modifyCart([{
       cartId,
       quantity: quantity + num
-    }]).catch((err) => {
-      alert("수량 변경에 실패했습니다.");
-    });
-
+    }]);
+    console.log(a);
     setQuantity(prev => prev + num);
     setTotalPrice((prev) => prev + num * itemPrice);
   }
@@ -49,10 +45,21 @@ const CartItemNumForm = ({ cartId, itemQuantity, itemPrice, setTotalPrice }) => 
  
   return (
     <div className="flex items-center justify-between my-1">
-      {
-      isModalOpen && 
-      <Modal handleCancelDelete={handleCancelDelete} handleConfirmDelete={handleConfirmDelete} />
-      }
+      {isModalOpen && (
+        <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-600 bg-opacity-50">
+          <div className="bg-white p-6 rounded">
+            <p className="">해당 상품 장바구니에서 삭제하시겠습니까?</p>
+            <div className="mt-4 flex justify-around">
+              <button onClick={handleCancelDelete}>
+                취소
+              </button>
+              <button onClick={handleConfirmDelete}>
+                확인
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="flex">
         <button onClick={handleDeleteClick} className="border border-black font-bold rounded-lg px-1 w-12 h-8 mr-4">
           삭제

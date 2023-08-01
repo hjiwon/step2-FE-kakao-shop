@@ -1,4 +1,5 @@
 import InputGroup from "../molecules/InputGroup"
+import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
 import { register, checkDuplicateEmail } from "../../apis/api";
 import { useNavigate } from "react-router-dom";
@@ -106,17 +107,17 @@ const RegisterForm = () => {
       </form>
       <span className="h-2 text-red-500 text-xs">{registerFailed}</span>
       {everythingIsValid ? 
-      <button
+      <Button
         className="w-96 m-2 pr-6 pl-6 p-2 bg-yellow-300 hover:bg-yellow-400 rounded-md mb-10"
         onClick={handleRegisterClick}>
           회원가입
-      </button> :
+      </Button> :
         
-      <button
+      <Button
         className="w-96 m-2 pr-6 pl-6 p-2 bg-yellow-300 text-gray-400 cursor-default rounded-md mb-10"
         >
           회원가입
-      </button>}
+      </Button>}
     <div className="absolute left-4 bottom-0 m-3">
       <Link to='/login'><span className="text-sm">로그인</span></Link>
       </div>

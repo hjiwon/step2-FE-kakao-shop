@@ -1,3 +1,4 @@
+import Button from "../atoms/Button";
 import { useNavigate } from "react-router-dom";
 import ProductPrice from "../atoms/ProductPrice";
 import { useDispatch } from "react-redux";
@@ -18,7 +19,7 @@ const MainProducts = ({responseData}) => {
 
      responseData.map((product) => (
       <div key={product.productName} className="w-60 m-10">
-      <button onClick={() => handleProductClick(product.id)}>
+      <Button onClick={() => handleProductClick(product.id)}>
         <div className="flex flex-col">
           <img src={`/assets/${product.image}`} alt={product.name} className="w-60 h-60 rounded-lg"/>
           <div className="text-xs px-1 mt-0.5 border rounded-lg bg-gray-500 font-bold text-white w-16">무료배송</div>
@@ -29,7 +30,7 @@ const MainProducts = ({responseData}) => {
             <span>원 부터~</span>
           </span>
         </div>
-      </button>
+      </Button>
       </div>
     ))}
     </div>

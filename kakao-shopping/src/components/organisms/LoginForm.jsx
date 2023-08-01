@@ -1,4 +1,5 @@
 import InputGroup from "../molecules/InputGroup"
+import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
 import { loginApi } from "../../apis/api";
 import { useDispatch } from "react-redux";
@@ -29,7 +30,7 @@ const LoginForm = () => {
       
       const token = response.headers.authorization;
       dispatch(loginSuccess({token: token}));
-      localStorage.setItem('userInfo', JSON.stringify({token: token, expirationTime: Date.now() + 1000 * 60 * 60}));
+      localStorage.setItem('userInfo', JSON.stringify({token: token, expirationTime: Date.now() + 1000 * 60 * 60 * 24}));
       navigate('/');
     } catch (error) {
       setLoginFailed(error.response.data.error.message);
@@ -69,17 +70,17 @@ const LoginForm = () => {
       <span className="text-red-500 text-xs block h-2">{loginFailed}</span>
       
       {everythingIsValid ? 
-      <button
+      <Button
         className="w-96 m-2 pr-6 pl-6 p-2 bg-yellow-300 hover:bg-yellow-400 rounded-md mb-10"
         onClick={handleLogin}>
           로그인
-      </button> :
+      </Button> :
         
-      <button
+      <Button
         className="w-96 m-2 pr-6 pl-6 p-2 bg-yellow-300 text-gray-400 cursor-default rounded-md mb-10"
         >
           로그인
-      </button>}
+      </Button>}
     <div className="absolute left-2 bottom-0">
       <Link to='/register'><span className="text-sm">회원가입</span></Link>
       </div>
