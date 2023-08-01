@@ -28,7 +28,7 @@ const OrderCompleteTemplate = () => {
             {data?.data.response.totalPrice}원
           </span>
         </div>
-        <Link to='/' className="bg-yellow-300 text-white rounded-b-md py-4 text-black text-center">쇼핑 계속하기</Link>
+        <Link to='/' className="bg-yellow-300 rounded-b-md py-4 text-black text-center">쇼핑 계속하기</Link>
       </div>
     </div>
   );

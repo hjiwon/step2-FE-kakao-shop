@@ -5,6 +5,7 @@ import OptionsList from "../molecules/OptionsList";
 import { useSelector } from "react-redux";
 import { addCart } from "../../apis/api";
 import { clearItem } from "../../redux/cartRedux";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 const ProductOptions = ({ product }) => {
@@ -21,9 +22,24 @@ const ProductOptions = ({ product }) => {
 
     addCart(cartItems)
     .then((res) => {
-      console.log(res);
       dispatch(clearItem());
       setSelectedOptions([]);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+    
+  }
+  const navigate = useNavigate();
+  const handlePurchaseClick = () => {
+
+    addCart(cartItems)
+    .then((res) => {
+      dispatch(clearItem());
+      setSelectedOptions([]);
+    })
+    .then(() => {
+      navigate('/cart');
     })
     .catch((err) => {
       console.log(err);
@@ -63,7 +79,7 @@ const ProductOptions = ({ product }) => {
 
       <div className="flex w-full mt-3">
         <button className="w-2/5 p-2 mr-1 text-sm h-10 bg-gray-900 rounded-md text-white" onClick={handleAddCartClick}>장바구니 담기</button>
-        <button className="w-3/5 p-2 text-sm h-10 bg-yellow-300 rounded-md">톡딜가로 구매하기</button>
+        <button className="w-3/5 p-2 text-sm h-10 bg-yellow-300 rounded-md" onClick={handlePurchaseClick}>톡딜가로 구매하기</button>
       </div>
     </div>
   )
