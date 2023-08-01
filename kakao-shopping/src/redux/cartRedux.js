@@ -25,6 +25,7 @@ const cartSlice = createSlice({
     },
     clearItem: (state) => {
       state.cartItems = [];
+      state.cartSumPrice = 0;
     },
     setOrderId: (state, action) => {
       state.orderId = action.payload;
