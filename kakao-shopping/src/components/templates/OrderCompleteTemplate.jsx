@@ -13,7 +13,6 @@ const OrderCompleteTemplate = () => {
 
   const products = data?.data.response.products;
 
-  console.log(data?.data.response);
   return (
     <div className="w-screen flex flex-col items-center">
       <div className="w-5/6 border rounded-md mb-10">
