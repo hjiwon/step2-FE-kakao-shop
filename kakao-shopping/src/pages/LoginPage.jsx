@@ -1,7 +1,7 @@
 import LoginForm from "../components/organisms/LoginForm";
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { loginSuccess, logout } from '../redux/redux';
+import { loginSuccess, logout } from '../redux/authRedux';
 import { useNavigate } from 'react-router-dom';
 import MainLogo from "../components/molecules/MainLogo";
 

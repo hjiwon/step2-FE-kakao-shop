@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from './redux/redux';
+import authReducer from './redux/authRedux';
 import cartReducer from './redux/cartRedux';
 import './App.css';
 
