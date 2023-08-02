@@ -1,7 +1,9 @@
 import axios from "axios";
 
+const STATIC_API_URL = process.env.REACT_APP_API_URL || '';
+
 const instance = axios.create({
-  baseURL: `${process.env.REACT_APP_API_URL}/api/`,
+  baseURL: `${STATIC_API_URL}api/`,
   timeout: 1000,
   headers: {
     "Content-Type": "application/json",
