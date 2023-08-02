@@ -8,6 +8,8 @@ import { clearItem } from "../../redux/cartRedux";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const ProductOptions = ({ product }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -44,7 +46,7 @@ const ProductOptions = ({ product }) => {
       setSelectedOptions([]);
     })
     .then(() => {
-      navigate('/cart');
+      navigate(staticServerUrl + '/cart');
     })
     .catch((err) => {
       console.log(err);

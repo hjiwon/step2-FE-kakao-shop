@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import GNB from "./GNB";
 import CartLIst from "../organisms/CartList";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const CartTemplate = () => {
   const { data : cart } = useQuery('cart', getCart, {suspense: true}); // api 호출로 카트 정보 가져오기
   const [totalPrice, setTotalPrice] = useState(cart?.data.response.totalPrice);
@@ -16,7 +18,7 @@ const CartTemplate = () => {
   const navigate = useNavigate();
 
   const handleBuyClick = () => {
-    navigate('/order');
+    navigate(staticServerUrl + '/order');
   }
 
   return (

@@ -4,6 +4,8 @@ import { loginSuccess, logout } from "../../redux/authRedux";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const GNB = () => {
 
   const dispatch = useDispatch();
@@ -27,7 +29,7 @@ const GNB = () => {
   const navigate = useNavigate();
   const handleLogoutClick = () => {
     dispatch(logout());                     // 상태 초기화
-    navigate('/');
+    navigate(staticServerUrl + '/');
     localStorage.removeItem('userInfo');    // 로그인 유지 삭제
   }
 
@@ -35,10 +37,10 @@ const GNB = () => {
 
   const handleCartClick = () => {
     if(!isLoggedIn) {
-      navigate('/login');
+      navigate(staticServerUrl + '/login');
     }
     else {
-      navigate('/cart');
+      navigate(staticServerUrl + '/cart');
     }
   }
 
@@ -47,13 +49,13 @@ const GNB = () => {
     <div className="h-16">
       <div className="h-px border border-t-grey border-solid"/>
         <div className="flex justify-between my-4 items-center h-8">
-          <Link to='/'><img className="w-28 ml-4" src="/assets/logoKakao.png" alt="logoKakao"/></Link>
+          <Link to={staticServerUrl + '/'}><img className="w-28 ml-4" src="/assets/logoKakao.png" alt="logoKakao"/></Link>
           <div className="flex items-center">
             <button><img className="w-8" src="/assets/cart.png" alt="cart" onClick={handleCartClick}/></button>
             <span className="px-4">|</span>
               {!!isLoggedIn ?
               <button className="text-sm" onClick={handleLogoutClick}>로그아웃</button> :
-              <Link className="text-sm mr-4" to='/login'>로그인</Link>
+              <Link className="text-sm mr-4" to={staticServerUrl + '/login'}>로그인</Link>
               }
           </div>
         </div>
